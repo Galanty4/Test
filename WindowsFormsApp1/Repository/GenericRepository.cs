@@ -6,6 +6,11 @@ using WindowsFormsApp1.Data;
 
 namespace WindowsFormsApp1.Repository
 {
+    /// <summary>
+    /// Generyczny wzorzec repozytorium dzięki któremu można odezwać się do każdego modelu w bazie danych za pomocą tych samych metod
+    /// Jego metody służą jedynie do komunikacja z bazą danych
+    /// </summary>
+    /// <typeparam name="Entity"></typeparam>
     public class GenericRepository<Entity> : IGenericRepository<Entity> where Entity : class
     {
 
@@ -16,11 +21,15 @@ namespace WindowsFormsApp1.Repository
             this.magazynContext = magazynContext;
         }
 
-        public async Task<Entity> GetEntityById(int id)
+        public void AddEntity(Entity entity)
         {
-            return await magazynContext.Set<Entity>().FindAsync(id);
+            var result = magazynContext.Set<Entity>().Add(entity);
+            magazynContext.SaveChanges();
         }
 
-
+        public Entity GetEntityById(int id)
+        {
+            return magazynContext.Set<Entity>().Find(id);
+        }
     }
 }

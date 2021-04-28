@@ -7,20 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Service.TypeOfCarService;
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private ITypeOfCarService _typeOfCarService;
+
+        /// <summary>
+        /// Dzięki DI w klasie program mamy uzupęłnione serwisy
+        /// </summary>
+        /// <param name="typeOfCarService"></param>
+        public Form1(ITypeOfCarService typeOfCarService)
         {
+            _typeOfCarService = typeOfCarService;
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Testowa metoda
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            var a = Program.repo.GetEntityById(1);
-            Console.WriteLine(a);
+            var value = _typeOfCarService.GetTypeOfCarById(1);
+            Console.WriteLine(value.Id);
         }
     }
 }

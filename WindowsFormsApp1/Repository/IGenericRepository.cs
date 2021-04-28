@@ -7,7 +7,8 @@ namespace WindowsFormsApp1.Repository
 {
     public interface IGenericRepository<Entity> where Entity : class
     {
-        Task<Entity> GetEntityById(int id);
+        Entity GetEntityById(int id);
+        void AddEntity(Entity entity);
 
     }
 }
