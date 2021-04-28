@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
             services.AddSingleton<Form1>();
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<ITypeOfCarService,TypeOfCarSerivce>();
-            services.AddDbContext<MagazynContext>(option => option.UseSqlServer(Configuration.GetConnectionString("MagazynDB")));
+            services.AddDbContext<SimpleWarehousContext>(option => option.UseSqlServer(Configuration.GetConnectionString("SimpleWarehous")));
         }
     }
 }

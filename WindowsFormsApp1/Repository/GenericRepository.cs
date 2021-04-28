@@ -14,22 +14,22 @@ namespace WindowsFormsApp1.Repository
     public class GenericRepository<Entity> : IGenericRepository<Entity> where Entity : class
     {
 
-        private readonly MagazynContext magazynContext;
+        private readonly SimpleWarehousContext simpleWarehousContext;
 
-        public GenericRepository(MagazynContext magazynContext)
+        public GenericRepository(SimpleWarehousContext simpleWarehousContext)
         {
-            this.magazynContext = magazynContext;
+            this.simpleWarehousContext = simpleWarehousContext;
         }
 
         public void AddEntity(Entity entity)
         {
-            var result = magazynContext.Set<Entity>().Add(entity);
-            magazynContext.SaveChanges();
+            var result = simpleWarehousContext.Set<Entity>().Add(entity);
+            simpleWarehousContext.SaveChanges();
         }
 
         public Entity GetEntityById(int id)
         {
-            return magazynContext.Set<Entity>().Find(id);
+            return simpleWarehousContext.Set<Entity>().Find(id);
         }
     }
 }
